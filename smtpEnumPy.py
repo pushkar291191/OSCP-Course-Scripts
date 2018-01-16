@@ -41,7 +41,13 @@ def connectToSocket(names):
 		#print (type(nameEn))
 		s.send(nameEn)
 		result = s.recv(1024)
-		print ("The result is {}".format(result))
+		resultFormat = result.split()
+		statusCode = resultFormat[0]
+		#print (type(statusCode))  statusCode is in bytes
+		statusCode = statusCode.decode('utf-8')
+		if statusCode == "250":
+			print ("\nUser Name is : {}".format(name[item]))
+			print ("The result is {}".format(result))
 
 	s.close()
 
